@@ -1,5 +1,5 @@
 //=============================================================================
-// MBS - Mobile Dir Pad (v1.2.0)
+// MBS - Mobile Dir Pad Upgraded
 //-----------------------------------------------------------------------------
 // por Masked
 //=============================================================================
@@ -7,125 +7,471 @@
 // Especificações do plugin (Não modifique!)
 // Plugin specifications (Do not modify!)
 //
+
 /*:
- @author Masked
- @plugindesc This script creates a DirPad and a action button for touch
- devices in order to make the movement better.
- <MBS MobileDirPad>
- @help
- =============================================================================
- Introduction
- =============================================================================
- This script creates DirPad and Action Button images on touch devices to make
- the controls easier to use.
 
- =============================================================================
- How to use
- =============================================================================
- If you want to erase an action button, just leave its image path empty. 
+@author Masked
+@plugindesc v1.0 - Creates buttons on screen for mobile games.
+<MBS MobileDirPad>
+@help
+==============================================================================
+Introduction
+==============================================================================
+This plugin is an updated version of the old Mbs_MobileDirPad made by Masked 
+(or Brandt).
+It contains the new plugin parameters and also, unlike the old one, this one 
+contains all the standard buttons of the Rpg maker mv.
 
- If you want to disable/enable the plugin, use these plugin commands:
+==============================================================================
+How to use
+==============================================================================
+If you don't want to use a button, just leave the parameter empty.
+To hide or show the controls use the plugin commands(not case sensitive):
 
- MobileDirPad disable
- MobileDirPad enable
+MobileDirPad disable
+MobileDirPad enable
 
- You might also want to use diagonal movement with this script, this is 
- possible now, just add the 8D movement plugin to your project and everything
- should work fine.
+==============================================================================
+Credits
+==============================================================================
+- You MUST give credits to Masked.
+- You can optionally give credits to me, Eliaquim.
 
- =============================================================================
- Credits
- =============================================================================
- - Masked, for creating
+==============================================================================
+Update log
+==============================================================================
+Version 1.0 - 04/11/2020
+- Released!
 
- @param DPad Image
- @desc The file path for the DPad image
- @default ./img/system/DirPad.png
+@param dPadImage
+@text DirPad image
+@type file
+@dir img/system
+@desc The file path for the DPad image
+@default
 
- @param ActionButton Image
- @desc The file path for the Action Button image
- @default ./img/system/ActionButton.png
+@param dPadX
+@text Position X
+@type number
+@desc The DirPad image position X on screen 
+@default 20
+@parent dPadImage
 
- @param CancelButton Image
- @desc The file path for the Cancel Button image
- @default ./img/system/CancelButton.png
+@param dPadY
+@text Position Y
+@type number
+@desc The DirPad image position Y on screen
+@default 430
+@parent dPadImage
 
- @param Button Size
- @desc The DPad buttons size
- @default 52
+@param dPadSize
+@text DirPad size
+@type number
+@desc The DPad buttons size
+@default 52
+@parent dPadImage
 
- @param DPad Position
- @desc The DirPad image position on screen (on format x; y)
- @default 128; 452
+@param actionButtonImage
+@text Action button image
+@type file
+@dir img/system
+@desc The file path for the Action Button image
+@default
 
- @param ActionButton Position
- @desc The ActionButton image position on screen (on format x; y)
- @default 688; 452
+@param actionButtonX
+@text Position X
+@type number
+@desc The ActionButton image position on screen (on format x; y)
+@default 600
+@parent actionButtonImage
 
- @param CancelButton Position
- @desc The ActionButton image position on screen (on format x; y)
- @default 752; 516
+@param actionButtonY
+@text Position Y
+@type number
+@desc The ActionButton image position on screen (on format x; y)
+@default 536
+@parent actionButtonImage
 
- @param Opacity
- @desc The opacity used on the DPad and Action Button
- @default 255
+@param cancelButtonImage
+@text Cancel button image
+@type file
+@dir img/system
+@desc The file path for the Cancel Button image
+@default
 
- @param Hide Duration
- @desc Number of frames the UI hiding take
- @default 15
+@param cancelButtonX
+@text Position X
+@type number
+@desc The CancelButton image position X on screen
+@default 700
+@parent cancelButtonImage
 
- @param PC Debug
- @desc Set to 'true' if you want to debug the script on a computer and to 'false' otherwise.
- @default true
+@param cancelButtonY
+@text Position Y
+@type number
+@desc The CancelButton image position Y on screen
+@parent cancelButtonImage
 
- @param Only in Map
- @desc Set to 'true' if you want the dpad to show up just at the map scene and to 'false' otherwise.
- @default false
+@param shiftButtonImage
+@text Shift button image
+@type file
+@dir img/system
+@desc The file path for the Attack Button image
+@default
+
+@param shiftButtonX
+@text Position X
+@type number
+@desc The RunButton image position X on screen
+@default 30
+@parent shiftButtonImage
+
+@param shiftButtonY
+@text Position Y
+@type number
+@desc The RunButton image position Y on screen
+@default 360
+@parent shiftButtonImage
+
+@param menuButtonImage
+@text Menu button image
+@type file
+@dir img/system
+@desc The file path for the Menu Button image
+@default
+
+@param menuButtonX
+@text Position X
+@type number
+@desc The MenuButton image position X on screen
+@default 760
+@parent menuButtonImage
+
+@param menuButtonY
+@text Position Y
+@type number
+@desc The MenuButton image position Y on screen
+@default 0
+@parent menuButtonImage
+
+@param qButtonImage
+@text PageUp button image
+@type file
+@dir img/system
+@desc The file path for the Q Button image
+@default
+
+@param qButtonX
+@text Position X
+@type number
+@desc The QButton image position X on screen
+@default 600
+@parent qButtonImage
+
+@param qButtonY
+@text Position Y
+@type number
+@desc The QButton image position Y on screen
+@default 440
+@parent qButtonImage
+
+@param wButtonImage
+@text PageDown button image
+@type file
+@dir img/system
+@desc The file path for the Q Button image
+@default
+
+@param wButtonX
+@text Position X
+@type number
+@desc The QButton image position X on screen
+@default 700
+@parent wButtonImage
+
+@param wButtonY
+@text Position Y
+@type number
+@desc The QButton image position Y on screen
+@default 406
+@parent wButtonImage
+
+@param opacity
+@text Control's opacity
+@type number
+@min 0
+@max 255
+@desc The opacity used for the controls(0 - 255).
+@default 255
+
+@param hideDuration
+@text Hide Duration
+@type number
+@desc Number of frames the UI hiding take
+@default 15
+
+@param pcDebug
+@text Debug on Pc
+@type boolean
+@desc Set to 'true' if you want to debug the script on a computer and to 'false' otherwise.
+@default true
+
+@param onlyInMap
+@text Only in Map
+@type boolean
+@desc Set to 'true' if you want the dpad to show up just at the map scene and to 'false' otherwise.
+@default false
 */
 
-var Imported = Imported || {};
-var MBS = MBS || {};
+/*:pt
+@author Masked
+@plugindesc v1.0 - Cria botões na tela para jogos mobile.
+<MBS MobileDirPad>
+@help
 
-MBS.MobileDirPad = {};
+==============================================================================
+Introdução
+==============================================================================
+Este plugin é uma versão atualizada do antigo Mbs_MobileDirPad feito por 
+Masked(ou Brandt).
+Contém os novos parâmetros de plugin e também, diferente do antigo, este 
+contém todos os botões padrões do rpg maker mv.
+
+==============================================================================
+Como usar
+==============================================================================
+Para não usar um botão, apenas deixe o parâmetro vazio.
+
+Para esconder ou mostrar os controles use os comandos de plugin:
+
+MobileDirPad disable
+MobileDirPad enable
+
+==============================================================================
+Créditos
+==============================================================================
+- Você DEVE dar créditos para o Masked.
+- Você pode, se quiser, dar créditos para mim, Eliaquim.
+
+==============================================================================
+Atualizações
+==============================================================================
+Versão 1.0 - 11/04/2020
+- Lançado!
+
+@param dPadImage
+@text DirPad image
+@type file
+@dir img/system
+@desc O arquivo de imagem deste botão.
+@default
+
+@param dPadX
+@text Posição X
+@type number
+@desc A posição X desse botão na tela.
+@default 20
+@parent dPadImage
+
+@param dPadY
+@text Posição Y
+@type number
+@desc A posição Y desse botão na tela.
+@default 430
+@parent dPadImage
+
+@param dPadSize
+@text DirPad size
+@type number
+@desc The DPad buttons size
+@default 52
+@parent dPadImage
+
+@param actionButtonImage
+@text Action button image
+@type file
+@dir img/system
+@desc O arquivo de imagem deste botão.
+@default
+
+@param actionButtonX
+@text Posição X
+@type number
+@desc A posição X desse botão na tela.
+@default 600
+@parent actionButtonImage
+
+@param actionButtonY
+@text Posição Y
+@type number
+@desc A posição Y desse botão na tela.
+@default 536
+@parent actionButtonImage
+
+@param cancelButtonImage
+@text Cancel button image
+@type file
+@dir img/system
+@desc O arquivo de imagem deste botão.
+@default
+
+@param cancelButtonX
+@text Posição X
+@type number
+@desc A posição X desse botão na tela.
+@default 700
+@parent cancelButtonImage
+
+@param cancelButtonY
+@text Posição Y
+@type number
+@desc A posição Y desse botão na tela.
+@parent cancelButtonImage
+
+@param shiftButtonImage
+@text Shift button image
+@type file
+@dir img/system
+@desc O arquivo de imagem deste botão.
+@default
+
+@param shiftButtonX
+@text Posição X
+@type number
+@desc A posição X desse botão na tela.
+@default 30
+@parent shiftButtonImage
+
+@param shiftButtonY
+@text Posição Y
+@type number
+@desc A posição Y desse botão na tela.
+@default 360
+@parent shiftButtonImage
+
+@param menuButtonImage
+@text Menu button image
+@type file
+@dir img/system
+@desc O arquivo de imagem deste botão.
+@default
+
+@param menuButtonX
+@text Posição X
+@type number
+@desc A posição X desse botão na tela.
+@default 760
+@parent menuButtonImage
+
+@param menuButtonY
+@text Posição Y
+@type number
+@desc A posição Y desse botão na tela.
+@default 0
+@parent menuButtonImage
+
+@param qButtonImage
+@text PageUp button image
+@type file
+@dir img/system
+@desc O arquivo de imagem deste botão.
+@default
+
+@param qButtonX
+@text Posição X
+@type number
+@desc A posição X desse botão na tela.
+@default 600
+@parent qButtonImage
+
+@param qButtonY
+@text Posição Y
+@type number
+@desc A posição Y desse botão na tela.
+@default 440
+@parent qButtonImage
+
+@param wButtonImage
+@text PageDown button image
+@type file
+@dir img/system
+@desc O arquivo de imagem deste botão.
+@default
+
+@param wButtonX
+@text Posição X
+@type number
+@desc A posição X desse botão na tela.
+@default 700
+@parent wButtonImage
+
+@param wButtonY
+@text Posição Y
+@type number
+@desc A posição Y desse botão na tela.
+@default 406
+@parent wButtonImage
+
+@param opacity
+@text Opacidade do controle
+@type number
+@min 0
+@max 255
+@desc A transparência do controle(0 - 255).
+@default 255
+
+@param hideDuration
+@text Delay para esconder controles
+@type number
+@desc Número de frames para o controle se esconder.
+@default 15
+
+@param pcDebug
+@text Testar no pc
+@type boolean
+@desc Coloque para true se você quer testar os controles no pc.
+@default true
+
+@param onlyInMap
+@text Somente no mapa
+@type boolean
+@desc Coloque true para mostrar os controles somente na cena do mapa.
+@default false
+*/
 
 "use strict";
 
-(function ($) {
+var Imported = Imported || {};
+Imported.MBS_MobileDirPad_Upgraded = true;
 
-	//-----------------------------------------------------------------------------
-	// Setup
-	//
+var MBS = MBS || {};
+MBS.MobileDirPad = MBS.MobileDirPad || {};
 
-	$.Parameters = $plugins.filter(function(p) {return p.description.contains('<MBS MobileDirPad>');})[0].parameters;
-	$.Param = $.Param || {};
+MBS.MobileDirPad.convertParameters = function(parameters){
+    MBS.MobileDirPad.parseParameters = function(string) {
+        try {
+            return JSON.parse(string, (key, value) => {
+                try {
+                    return MBS.MobileDirPad.parseParameters(value)
+                } catch (e) {
+                    return value
+                } 
+            })
+        } catch (e) {
+            return string
+            }
+        }
+        return MBS.MobileDirPad.parseParameters(JSON.stringify(parameters))
+};
 
-	$.Param.size = Number($.Parameters["Button Size"]);
-
-	$.Param.dpad = $.Parameters["DPad Image"];
-	$.Param.button = $.Parameters["ActionButton Image"];
-	$.Param.cButton = $.Parameters["CancelButton Image"];
-
-	var dposition = $.Parameters["DPad Position"].split(";");
-	$.Param.dpadPosition = new PIXI.Point(Number(dposition[0]), Number(dposition[1]));
-
-	var bposition = $.Parameters["ActionButton Position"].split(";");
-	$.Param.buttonPosition = new PIXI.Point(Number(bposition[0]), Number(bposition[1]));
-
-	var cposition = $.Parameters["CancelButton Position"].split(";");
-	$.Param.cButtonPosition = new PIXI.Point(Number(cposition[0]), Number(cposition[1]));
-
-	$.Param.opacity = Number($.Parameters["Opacity"]);
-
-	$.Param.hideDuration = Number($.Parameters["Hide Duration"]);
-
-	$.Param.pcDebug = ($.Parameters["PC Debug"].toLowerCase() === "true") && Utils.isOptionValid('test');
-	$.Param.onlyMap = ($.Parameters["Only in Map"].toLowerCase() === "true");
+MBS.MobileDirPad.Parameters = PluginManager.parameters('MBS_MobileDirPad_Upgraded');
+MBS.MobileDirPad.Param = MBS.MobileDirPad.convertParameters(MBS.MobileDirPad.Parameters) || {};
  
  	//-----------------------------------------------------------------------------
 	// Module functions
 	//
 
- 	$.enable = function(flag) {
+ 	MBS.MobileDirPad.enable = function(flag) {
 		Scene_Base.dirpad = flag;
 		if (flag) {
 			SceneManager._scene.showUserInterface();
@@ -148,9 +494,9 @@ MBS.MobileDirPad = {};
 
 	Sprite_DirPad.prototype.initialize = function() {
 		Sprite_Base.prototype.initialize.call(this);
-		this.bitmap = ImageManager.loadNormalBitmap($.Param.dpad, 0);
-		this.anchor.y = 0.5;
-		this.anchor.x = 0.5;
+		this.bitmap = ImageManager.loadSystem(MBS.MobileDirPad.Param.dPadImage);
+		this.anchor.y = 0;//0.5;
+		this.anchor.x = 0;//0.5;
 		this.z = 5;
 		this._lastDir = '';
 	};
@@ -177,12 +523,12 @@ MBS.MobileDirPad = {};
 			this._lastDir = '';
 		}
 
-		var s = $.Param.size;
+		let s = MBS.MobileDirPad.Param.dPadSize;
 
 		if (TouchInput.isPressed()) {
-			var sx = this.x - this.width * this.anchor.x;
-			var sy = this.y - this.height * this.anchor.y;
-			var rect = this.getBounds();
+			let sx = this.x - this.width * this.anchor.x;
+			let sy = this.y - this.height * this.anchor.y;
+			let rect = this.getBounds();
 			
 			this._lastDir = '';
 
@@ -205,14 +551,14 @@ MBS.MobileDirPad = {};
 	};
 
 	Sprite_DirPad.prototype.hide = function() {
-		this._moveDuration = $.Param.hideDuration;
-		var dest = 0 - 64 - this.width * (1 + this.anchor.x);
+		this._moveDuration = MBS.MobileDirPad.Param.hideDuration;
+		let dest = 0 - 64 - this.width * (1 + this.anchor.x);
 		this._moveSpeed = (dest - this.x) / this._moveDuration;
 	};
 
 	Sprite_DirPad.prototype.show = function() {
-		this._moveDuration = $.Param.hideDuration;
-		var dest = $.Param.dpadPosition.x;
+		this._moveDuration = MBS.MobileDirPad.Param.hideDuration;
+		let dest = MBS.MobileDirPad.Param.dPadX;
 		this._moveSpeed = (dest - this.x) / this._moveDuration;
 	};
 
@@ -221,64 +567,156 @@ MBS.MobileDirPad = {};
 	//
 	// Sprite for the action button
 
-	function Sprite_Button() {
+	function Sprite_mbsButton() {
 		this.initialize.apply(this, arguments);
 	}
 
-	Sprite_Button.prototype = Object.create(Sprite_Base.prototype);
-	Sprite_Button.prototype.constructor = Sprite_Button;
+	Sprite_mbsButton.prototype = Object.create(Sprite_Base.prototype);
+	Sprite_mbsButton.prototype.constructor = Sprite_mbsButton;
 
-	Sprite_Button.prototype.initialize = function(type) {
+	Sprite_mbsButton.prototype.initialize = function(type) {
 		Sprite_Base.prototype.initialize.call(this);
 		this._type = type;
-		if ((type == 0 ? $.Param.button : $.Param.cButton) == "") this.visible = false;
-		else
-			this.bitmap = ImageManager.loadNormalBitmap(type == 0 ? $.Param.button : $.Param.cButton, 0);
+		
+		let imgPath = '';  // default, empty string
+	switch (type) {
+		case 0:
+	imgPath = MBS.MobileDirPad.Param.actionButtonImage;
+    break;
+		case 1:
+    imgPath = MBS.MobileDirPad.Param.cancelButtonImage;
+    break;
+		case 2:
+    imgPath = MBS.MobileDirPad.Param.shiftButtonImage;
+    break;
+		case 3:
+    imgPath = MBS.MobileDirPad.Param.menuButtonImage;
+    break;
+		case 4:
+    imgPath = MBS.MobileDirPad.Param.qButtonImage;
+    break;
+		case 5:
+    imgPath = MBS.MobileDirPad.Param.wButtonImage;
+    break;
+		default:
+    console.error('MBS_MobileDirPad_Upgraded.js: button type ' + type + ' not recognised!');
+    break;
+}
+		// These next two lines are the ones you edited
+		if (imgPath == '') {
+			this.visible = false;  // make invisible if no image is assigned
+		}else{
+			this.bitmap = ImageManager.loadSystem(imgPath);  // else load image
+		}
+		 
 
-		this.anchor.y = 0.5;
-		this.anchor.x = 0.5;
+		this.anchor.y = 0;//0.5;
+		this.anchor.x = 0;//0.5;
 		this._moveDuration = 0;
 		this._moveSpeed = 0;
 		this.z = 5;
 	};
 
-	Sprite_Button.prototype.update = function() {
+	Sprite_mbsButton.prototype.update = function() {
 		Sprite_Base.prototype.update.call(this);
 		if (!this.visible) return;
 		this.updateMovement();
 		this.updateTouch();
 	};
 
-	Sprite_Button.prototype.updateMovement = function() {
+	Sprite_mbsButton.prototype.updateMovement = function() {
 		if (this._moveDuration > 0) {
 			this.x += this._moveSpeed;
 			this._moveDuration--;
 		}
 	};
 
-	Sprite_Button.prototype.updateTouch = function() {
-		if (this._type == 0 && TouchInput.isPressed()) {
-			var rect = new PIXI.Rectangle(this.x - this.width * this.anchor.x, this.y - this.height * this.anchor.y, this.width, this.height);
-			Input._currentState['ok'] = rect.contains(TouchInput.x, TouchInput.y);
-		} else if (this._type == 0) {
-			Input._currentState['ok'] = false;
-		} else if (this._type == 1 && TouchInput.isTriggered()) {
-			var rect = new PIXI.Rectangle(this.x - this.width * this.anchor.x, this.y - this.height * this.anchor.y, this.width, this.height);
-			Input._currentState['escape'] = rect.contains(TouchInput.x, TouchInput.y);
-		} else if (this._type == 1) {
-			Input._currentState['escape'] = false;
+	Sprite_mbsButton.prototype.updateTouch = function() {
+		switch(this._type){
+			case 0:
+				if(TouchInput.isTriggered()){
+					let rect = new PIXI.Rectangle(this.x - this.width * this.anchor.x, this.y - this.height * this.anchor.y, this.width, this.height);
+					Input._currentState['ok'] = rect.contains(TouchInput.x, TouchInput.y);
+				} else {
+					Input._currentState['ok'] = false;
+				}
+			break;
+			case 1:
+				if(TouchInput.isTriggered()){
+					let rect = new PIXI.Rectangle(this.x - this.width * this.anchor.x, this.y - this.height * this.anchor.y, this.width, this.height);
+					Input._currentState['cancel'] = rect.contains(TouchInput.x, TouchInput.y);
+				} else {
+					Input._currentState['cancel'] = false;
+				}
+			break;
+			case 2:
+				if(TouchInput.isTriggered()){
+					let rect = new PIXI.Rectangle(this.x - this.width * this.anchor.x, this.y - this.height * this.anchor.y, this.width, this.height);
+					Input._currentState['shift'] = rect.contains(TouchInput.x, TouchInput.y);
+				} else {
+					Input._currentState['shift'] = false;
+				}
+			break;
+			case 3:
+				if(TouchInput.isTriggered()){
+					let rect = new PIXI.Rectangle(this.x - this.width * this.anchor.x, this.y - this.height * this.anchor.y, this.width, this.height);
+					Input._currentState['menu'] = rect.contains(TouchInput.x, TouchInput.y);
+				} else {
+					Input._currentState['menu'] = false;
+				}
+			break;
+			case 4:
+				if(TouchInput.isTriggered()){
+					let rect = new PIXI.Rectangle(this.x - this.width * this.anchor.x, this.y - this.height * this.anchor.y, this.width, this.height);
+					Input._currentState['pageup'] = rect.contains(TouchInput.x, TouchInput.y);
+				} else {
+					Input._currentState['pageup'] = false;
+				}
+			break;
+			case 5:
+				if(TouchInput.isTriggered()){
+					let rect = new PIXI.Rectangle(this.x - this.width * this.anchor.x, this.y - this.height * this.anchor.y, this.width, this.height);
+					Input._currentState['pagedown'] = rect.contains(TouchInput.x, TouchInput.y);
+				} else {
+					Input._currentState['pagedown'] = false;
+				}
+			break;
 		}
 	};
 
-	Sprite_Button.prototype.hide = function() {
-		this._moveDuration = $.Param.hideDuration;
-		var dest = Graphics.width + this.width * this.anchor.x + 64;
+	Sprite_mbsButton.prototype.hide = function() {
+		this._moveDuration = MBS.MobileDirPad.Param.hideDuration;
+		let dest = Graphics.width + this.width * this.anchor.x + 64;
 		this._moveSpeed = (dest - this.x) / this._moveDuration;
 	}
 
-	Sprite_Button.prototype.show = function() {
-		this._moveDuration = $.Param.hideDuration;
-		var dest = this._type == 0 ? $.Param.buttonPosition.x : $.Param.cButtonPosition.x;
+	Sprite_mbsButton.prototype.show = function() {
+		this._moveDuration = MBS.MobileDirPad.Param.hideDuration;
+		
+		let dest = '';  // default, empty string
+			switch (this._type) {
+				case 0:
+			dest = MBS.MobileDirPad.Param.actionButtonX;
+			break;
+				case 1:
+			dest = MBS.MobileDirPad.Param.cancelButtonX;
+			break;
+				case 2:
+			dest = MBS.MobileDirPad.Param.shiftButtonX;
+			break;
+				case 3:
+			dest = MBS.MobileDirPad.Param.menuButtonX;
+			break;
+				case 4:
+			dest = MBS.MobileDirPad.Param.qButtonX;
+			break;
+				case 5:
+			dest = MBS.MobileDirPad.Param.wButtonX;
+			break;
+				default:
+			console.error('MBS_MobileDirPad_Upgraded.js: button type ' + type + ' not recognised!');
+			break;
+		}
 		this._moveSpeed = (dest - this.x) / this._moveDuration;
 	}
 
@@ -287,69 +725,104 @@ MBS.MobileDirPad = {};
 	//
 	// The base scene class for all other scenes
 
-	var Scene_Base_start = Scene_Base.prototype.start;
-	var Scene_Base_update = Scene_Base.prototype.update;
-
 	Scene_Base.prototype.isMobileDevice = function() {
-		return Utils.isMobileDevice() || $.Param.pcDebug;
+		return Utils.isMobileDevice() || MBS.MobileDirPad.Param.pcDebug;
 	};
 
 	Scene_Base.dirpad = true;
 
+	MBS.MobileDirPad.Scene_Base_start = Scene_Base.prototype.start;
 	Scene_Base.prototype.start = function() {
-	    Scene_Base_start.apply(this, arguments);
+	    MBS.MobileDirPad.Scene_Base_start.apply(this, arguments);
 	    Scene_Base.dirpad = Scene_Base.dirpad && this.isMobileDevice();
 
-	    if (!$.Param.onlyMap || this instanceof Scene_Map) {
+	    if (!MBS.MobileDirPad.Param.onlyInMap || this instanceof Scene_Map) {
 		    this.createDirPad();
 		    this.createActionButtons();
-		    $.enable(Scene_Base.dirpad);
+		    MBS.MobileDirPad.enable(Scene_Base.dirpad);
 		}
 	};
 
+	MBS.MobileDirPad.Scene_Base_update = Scene_Base.prototype.update;
 	Scene_Base.prototype.update = function() {
-		Scene_Base_update.apply(this, arguments);
-		if (this.isMobileDevice() && this._dirPad != undefined && this._aButton != undefined && this._cButton != undefined)
-			this._dirPad.visible = this._aButton.visible = this._cButton.visible = Scene_Base.dirpad;
+		MBS.MobileDirPad.Scene_Base_update.apply(this, arguments);
+		if (this.isMobileDevice() && this._dirPad != undefined && this._aButton != undefined && this._cButton != undefined && this._shiftButton != undefined && this._mButton != undefined && this._qButton != undefined && this._wButton != undefined)
+			this._dirPad.visible = this._aButton.visible = this._cButton.visible = this._shiftButton.visible = this._mButton.visible = this._qButton.visible = this._wButton.visible = Scene_Base.dirpad;
 	};
 
 	Scene_Base.prototype.createDirPad = function() {
 		this._dirPad = new Sprite_DirPad();
-		this._dirPad.opacity = $.Param.opacity;
+		this._dirPad.opacity = MBS.MobileDirPad.Param.opacity;
 
-		this._dirPad.x = $.Param.dpadPosition.x;
-		this._dirPad.y = $.Param.dpadPosition.y;
+		this._dirPad.x = MBS.MobileDirPad.Param.dPadX;
+		this._dirPad.y = MBS.MobileDirPad.Param.dPadY;
 
 		this.addChild(this._dirPad);
 	};
 
 	Scene_Base.prototype.createActionButtons = function() {
-		this._aButton = new Sprite_Button(0);
-		this._aButton.opacity = $.Param.opacity;
+		this._aButton = new Sprite_mbsButton(0);
+		this._aButton.opacity = MBS.MobileDirPad.Param.opacity;
 
-		this._aButton.x = $.Param.buttonPosition.x;
-		this._aButton.y = $.Param.buttonPosition.y;
+		this._aButton.x = MBS.MobileDirPad.Param.actionButtonX;
+		this._aButton.y = MBS.MobileDirPad.Param.actionButtonY;
 
-		this._cButton = new Sprite_Button(1);
-		this._cButton.opacity = $.Param.opacity;
+		this._cButton = new Sprite_mbsButton(1);
+		this._cButton.opacity = MBS.MobileDirPad.Param.opacity;
 
-		this._cButton.x = $.Param.cButtonPosition.x;
-		this._cButton.y = $.Param.cButtonPosition.y;
+		this._cButton.x = MBS.MobileDirPad.Param.cancelButtonX;
+		this._cButton.y = MBS.MobileDirPad.Param.cancelButtonY;
+		
+		this._shiftButton = new Sprite_mbsButton(2);
+		this._shiftButton.opacity = MBS.MobileDirPad.Param.opacity;
+
+		this._shiftButton.x = MBS.MobileDirPad.Param.shiftButtonX;
+		this._shiftButton.y = MBS.MobileDirPad.Param.shiftButtonY;
+		
+		this._mButton = new Sprite_mbsButton(3);
+		this._mButton.opacity = MBS.MobileDirPad.Param.opacity;
+
+		this._mButton.x = MBS.MobileDirPad.Param.menuButtonX;
+		this._mButton.y = MBS.MobileDirPad.Param.menuButtonY;
+		
+		this._qButton = new Sprite_mbsButton(4);
+		this._qButton.opacity = MBS.MobileDirPad.Param.opacity;
+
+		this._qButton.x = MBS.MobileDirPad.Param.qButtonX;
+		this._qButton.y = MBS.MobileDirPad.Param.qButtonY;
+		
+		this._wButton = new Sprite_mbsButton(5);
+		this._wButton.opacity = MBS.MobileDirPad.Param.opacity;
+
+		this._wButton.x = MBS.MobileDirPad.Param.wButtonX;
+		this._wButton.y = MBS.MobileDirPad.Param.wButtonY;
 
 		this.addChild(this._aButton);
 		this.addChild(this._cButton);
+		this.addChild(this._shiftButton);
+		this.addChild(this._mButton);
+		this.addChild(this._qButton);
+		this.addChild(this._wButton);
 	};
 
 	Scene_Base.prototype.hideUserInterface = function() {
 		this._dirPad.hide();
 		this._aButton.hide();
 		this._cButton.hide();
+		this._shiftButton.hide();
+		this._mButton.hide();
+		this._qButton.hide();
+		this._wButton.hide();
 	};
 
 	Scene_Base.prototype.showUserInterface = function() {
 		this._dirPad.show();
 		this._aButton.show();
 		this._cButton.show();
+		this._shiftButton.show();
+		this._mButton.show();
+		this._qButton.show();
+		this._wButton.show();
 	};
 
 	//-----------------------------------------------------------------------------
@@ -357,15 +830,13 @@ MBS.MobileDirPad = {};
 	//
 	// The map scene
 
-	var Scene_Map_createMessageWindows = Scene_Map.prototype.createMessageWindow;
-	var Scene_Map_processMapTouch = Scene_Map.prototype.processMapTouch;
-	var Scene_Map_terminate = Scene_Map.prototype.terminate;
-
+	MBS.MobileDirPad.Scene_Map_createMessageWindow = Scene_Map.prototype.createMessageWindow;
 	Scene_Map.prototype.createMessageWindow = function() {
-		Scene_Map_createMessageWindows.call(this);
-		var oldStartMessage = this._messageWindow.startMessage;
-		var oldTerminateMessage = this._messageWindow.terminateMessage;
-		var scene = this;
+		MBS.MobileDirPad.Scene_Map_createMessageWindow.call(this);
+		let oldStartMessage = this._messageWindow.startMessage;
+		let oldTerminateMessage = this._messageWindow.terminateMessage;
+		let scene = this;
+
 		this._messageWindow.startMessage = function() {
 			oldStartMessage.apply(this, arguments);
 			scene.hideUserInterface();
@@ -376,40 +847,42 @@ MBS.MobileDirPad = {};
 		};
 	};
 
+	MBS.MobileDirPad.Scene_Map_terminate = Scene_Map.prototype.terminate;
 	Scene_Map.prototype.terminate = function() {
 		if (this.isMobileDevice())
-	    	this._dirPad.visible = this._aButton.visible = this._cButton.visible = false;
-		Scene_Map_terminate.apply(this, arguments);
+	    	this._dirPad.visible = this._aButton.visible = this._cButton.visible = this._shiftButton.visible = this._mButton.visible = this._qButton.visible = this._wButton.visible = false;
+		MBS.MobileDirPad.Scene_Map_terminate.apply(this, arguments);
 	};
 
+	MBS.MobileDirPad.Scene_Map_processMapTouch = Scene_Map.prototype.processMapTouch;
 	Scene_Map.prototype.processMapTouch = function() {
-		if (!(this.isMobileDevice() && Scene_Base.dirpad)) Scene_Map_processMapTouch.apply(this, arguments);
+		if (!(this.isMobileDevice() && Scene_Base.dirpad)) MBS.MobileDirPad.Scene_Map_processMapTouch.apply(this, arguments);
 	};
 
 	//-----------------------------------------------------------------------------
 	// Plugin Command
 	//
 
-  	var _GameInterpreter_pluginCommand = Game_Interpreter.prototype.pluginCommand;
-
+	MBS.MobileDirPad.Game_Interpreter_pluginCommand = Game_Interpreter.prototype.pluginCommand;
   	Game_Interpreter.prototype.pluginCommand = function (command, args) {
-  		_GameInterpreter_pluginCommand.apply(this, arguments);
-
-  		if (command == "MobileDirPad") {
-  			if (args[0] == "enable") {
-  				$.enable(true);
-  			} else if (args[0] == "disable") {
-  				$.enable(false);
+		MBS.MobileDirPad.Game_Interpreter_pluginCommand.apply(this, arguments);
+		let cmd = command.toUpperCase();
+		let args0 = args[0].toUpperCase();
+  		if (cmd === "MOBILEDIRPAD") {
+  			if (args0 === "ENABLE") {
+  				MBS.MobileDirPad.enable(true);
+  			} else if (args0 === "disable") {
+  				MBS.MobileDirPad.enable(false);
   			}
   		}
   	};
 
-})(MBS.MobileDirPad);
+// })(MBS.MobileDirPad);
 
-Imported["MBS_MobileDirPad"] = 1.1;
+Imported["MBS_MobileDirPad_Upgraded"] = 1.1;
 
 if (Imported["MVCommons"]) {
-  	PluginManager.register("MBS_MobileDirPad", 1.1, "Shows a DirPad and action buttons when using mobile devices", {  
+  	PluginManager.register("MBS_MobileDirPad_Upgraded", 1.1, "Shows a DirPad and action buttons when using mobile devices", {  
       email: "masked.rpg@gmail.com",
       name: "Masked", 
       website: "N/A"
